@@ -7,6 +7,7 @@ import chalk from 'chalk';
 
 import { loginPost } from './controllers/login.js'
 import { cadastroPost } from './controllers/cadastro.js'
+import { homeGet } from './controllers/home.js'
 
 
 dotenv.config();
@@ -21,6 +22,9 @@ app.post('/cadastro', cadastroPost)
 
 // login
 app.post('/login', loginPost)
+
+// home
+app.get('/', homeGet)
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {
