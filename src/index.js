@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 import chalk from 'chalk';
 
 import { loginGet } from './controllers/login.js'
-import { cadastroGet, cadastroPost } from './controllers/cadastro.js'
+import { cadastroPost } from './controllers/cadastro.js'
 
 dotenv.config();
 const app = express();
@@ -18,7 +18,6 @@ console.log('JSON worked')
 
 // cadastro
 app.post('/cadastro', cadastroPost)
-app.get('/cadastro', cadastroGet)
 
 // login
 app.get('/login', loginGet)
