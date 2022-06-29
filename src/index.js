@@ -16,17 +16,11 @@ console.log('CORS worked')
 app.use(express.json());
 console.log('JSON worked')
 
-
-const client = new MongoClient(process.env.MONGO_URI)
-let db;
-client.connect().then(() => {
-    db = client.db(process.env.MONGO_DATABASE_NAME)
-})
-
+// cadastro
 app.post('/cadastro', cadastroPost)
 app.get('/cadastro', cadastroGet)
 
-
+// login
 app.get('/login', loginGet)
 
 const PORT = process.env.PORT

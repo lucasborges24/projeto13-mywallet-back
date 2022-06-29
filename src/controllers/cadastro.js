@@ -1,6 +1,6 @@
 import { newUserSchema } from "../schema.js"
 import { sanit } from "../sanitizing.js"
-
+import { db } from "../database/mongo.js"
 
 const cadastroGet = async (req, res) => {
     console.log('cadastro')
@@ -19,7 +19,8 @@ const cadastroPost = async (req, res) => {
     if(validationAfter.error) return res.sendStatus(422)
 
     try {
-        
+        const a = await db.collection('users').find().toArray()
+        console.log(a)
     } catch (error) {
         
     }
