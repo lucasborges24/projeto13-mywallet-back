@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 import chalk from 'chalk';
 
 import { loginGet } from './controllers/login.js'
-import { cadastroGet } from './controllers/cadastro.js'
+import { cadastroGet, cadastroPost } from './controllers/cadastro.js'
 
 dotenv.config();
 const app = express();
@@ -23,8 +23,9 @@ client.connect().then(() => {
     db = client.db(process.env.MONGO_DATABASE_NAME)
 })
 
-
+app.post('/cadastro', cadastroPost)
 app.get('/cadastro', cadastroGet)
+
 
 app.get('/login', loginGet)
 

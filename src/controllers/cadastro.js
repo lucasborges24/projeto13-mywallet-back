@@ -1,6 +1,33 @@
+import { newUserSchema } from "../schema.js"
+import { sanit } from "../sanitizing.js"
+
+
 const cadastroGet = async (req, res) => {
     console.log('cadastro')
     res.send('cadastro feito')
 }
 
-export { cadastroGet }
+const cadastroPost = async (req, res) => {
+    const validationBefore = newUserSchema.validate(req.body)
+    if(validationBefore.error) return res.status(422).send('n deu bom')
+    const newUser = {
+        name: sanit(req.body.name),
+        email: sanit(req.body.email),
+        password: sanit(req.body.password)
+    }
+    const validationAfter = newUserSchema.validate(newUser)
+    if(validationAfter.error) return res.sendStatus(422)
+
+    try {
+        
+    } catch (error) {
+        
+    }
+
+    res.send('deu bao')
+}
+
+export {
+    cadastroGet,
+    cadastroPost
+}
