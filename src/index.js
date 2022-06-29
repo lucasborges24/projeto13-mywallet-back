@@ -1,13 +1,13 @@
 import express from "express";
 import cors from 'cors';
-import { MongoClient, ObjectId } from "mongodb";
 import joi from 'joi';
 import dotenv from 'dotenv';
 import dayjs from "dayjs";
 import chalk from 'chalk';
 
-import { loginGet } from './controllers/login.js'
+import { loginPost } from './controllers/login.js'
 import { cadastroPost } from './controllers/cadastro.js'
+
 
 dotenv.config();
 const app = express();
@@ -20,7 +20,7 @@ console.log('JSON worked')
 app.post('/cadastro', cadastroPost)
 
 // login
-app.get('/login', loginGet)
+app.post('/login', loginPost)
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {
