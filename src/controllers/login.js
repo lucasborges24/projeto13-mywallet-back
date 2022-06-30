@@ -21,7 +21,7 @@ const loginPost =  async (req, res) => {
 
     try {
         const emailExists = await db.collection('users').findOne({email})
-
+        
         if (!emailExists || !bcrypt.compareSync(password, emailExists.password)) {
             return res.sendStatus(401)
         }
@@ -38,6 +38,7 @@ const loginPost =  async (req, res) => {
             console.log('token was switched to ' + token)
         } else {
             await db.collection('sessions').insertOne({
+                name: emailExists.name,
                 userId: emailExists._id,
                 token
             })

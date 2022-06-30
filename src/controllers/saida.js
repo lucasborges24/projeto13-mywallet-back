@@ -27,7 +27,8 @@ const saidaPost = async (req, res) => {
         newValue = {...newValue, userId: user.userId}
         await db.collection('values').insertOne(newValue)
         
-        res.sendStatus(201)
+        const valueToSend = await db.collection('values').findOne(newValue)
+        res.status(201).send(valueToSend)
     } catch (error) {
         res.sendStatus(500)
     }

@@ -12,8 +12,7 @@ const homeGet = async (req, res) => {
 
         if(!user) return res.sendStatus(401)
         const data = await db.collection('values').find({userId: user.userId}).toArray();
-        
-        res.sendStatus(200)
+        res.send([user, data])
     } catch (error) {
         res.sendStatus(500)
     }
