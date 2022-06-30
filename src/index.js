@@ -28,7 +28,7 @@ app.post('/login', loginPost)
 
 // home
 app.get('/', homeGet)
-app.delete('/', homeDelete)
+app.delete('/:id', homeDelete)
 
 // entrada
 app.post('/entrada', entradaPost)
