@@ -7,7 +7,7 @@ import chalk from 'chalk';
 
 import { loginPost } from './controllers/login.js'
 import { cadastroPost } from './controllers/cadastro.js'
-import { homeGet } from './controllers/home.js'
+import { homeGet, homeDelete } from './controllers/home.js'
 import { entradaPost } from './controllers/entrada.js'
 import { saidaPost } from './controllers/saida.js'
 import { editarPut } from './controllers/editar.js'
@@ -28,6 +28,7 @@ app.post('/login', loginPost)
 
 // home
 app.get('/', homeGet)
+app.delete('/', homeDelete)
 
 // entrada
 app.post('/entrada', entradaPost)
@@ -36,7 +37,7 @@ app.post('/entrada', entradaPost)
 app.post('/saida', saidaPost)
 
 // editar 
-app.put('/editar', editarPut)
+app.put('/editar/:url', editarPut)
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {

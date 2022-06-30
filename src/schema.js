@@ -25,7 +25,20 @@ const loginSchema = joi.object({
         .required()
 })
 
+const valueSchema = joi.object({
+    value: joi.number()
+        .precision(2)
+        .required(),
+    description: joi.string()
+        .required()
+        .trim(),
+    type: joi.string()
+        .valid('in', 'out')
+        .required()
+}).unknown()
+
 export {
     newUserSchema,
-    loginSchema    
+    loginSchema,
+    valueSchema    
 }
