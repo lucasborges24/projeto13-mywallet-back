@@ -5,12 +5,10 @@ import dotenv from 'dotenv';
 import dayjs from "dayjs";
 import chalk from 'chalk';
 
-import { loginPost } from './controllers/login.js'
-import { cadastroPost } from './controllers/cadastro.js'
-import { homeGet, homeDelete } from './controllers/home.js'
-import { entradaPost } from './controllers/entrada.js'
-import { saidaPost } from './controllers/saida.js'
-import { editarPut } from './controllers/editar.js'
+import addRouter from './routes/addRouter.js'
+import authRouter from './routes/authRouter.js'
+import editRouter from './routes/editRouter.js'
+import homeRouter from './routes/homeRouter.js'
 
 
 dotenv.config();
@@ -20,24 +18,10 @@ console.log('CORS worked')
 app.use(express.json());
 console.log('JSON worked')
 
-// cadastro
-app.post('/cadastro', cadastroPost)
-
-// login
-app.post('/login', loginPost)
-
-// home
-app.get('/', homeGet)
-app.delete('/:id', homeDelete)
-
-// entrada
-app.post('/entrada', entradaPost)
-
-// saida
-app.post('/saida', saidaPost)
-
-// editar 
-app.put('/editar/:url', editarPut)
+app.use(authRouter)
+app.use(addRouter)
+app.use(editRouter)
+app.use(homeRouter)
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {
