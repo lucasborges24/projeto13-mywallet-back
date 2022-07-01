@@ -4,30 +4,19 @@ import { valueSchema } from "../schema.js"
 import dayjs from "dayjs"
 
 const saidaPost = async (req, res) => {
-    const {authorization} = req.headers
-    const validationBefore = valueSchema.validate(req.body)
-    if(validationBefore.error) return res.sendStatus(422)
-    let newValue = {
-        value: req.body.value,
-        description: sanit(req.body.description),
-        type: sanit(req.body.type),
+    const { user } = res.locals
+    let { newValue } = res.locals
+    newValue = {
+        ...newValue,
         dateNow: Date.now(),
-        day: dayjs().format('DD/MM')
+        day: dayjs().format('DD/MM'),
+        userId: user.userId
     }
-    const validationAfter = valueSchema.validate(newValue)
-    if (validationAfter.error) return res.sendStatus(422)
-
-    const token = authorization.replace('Bearer ', '')
-    
     try {
-        const user = await db.collection('sessions').findOne({token})
-        
-        if (!user) return res.sendStatus(401)
-
-        newValue = {...newValue, userId: user.userId}
-        await db.collection('values').insertOne(newValue)
-        
-        const valueToSend = await db.collection('values').findOne(newValue)
+        await db.collection('values')
+            .insertOne(newValue)
+        const valueToSend = await db.collection('values')
+            .findOne(newValue)
         res.status(201).send(valueToSend)
     } catch (error) {
         res.sendStatus(500)
