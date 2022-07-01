@@ -24,7 +24,12 @@ const loginSchema = joi.object({
         .max(30)
         .required()
 })
-
+const numberMethod = (value, helpers) => {
+    if (typeof value !== 'number') {
+        return helpers.error('any.invalid')
+    }
+    return value;
+}
 const valueSchema = joi.object({
     value: joi.number()
         .precision(2)
@@ -40,5 +45,5 @@ const valueSchema = joi.object({
 export {
     newUserSchema,
     loginSchema,
-    valueSchema    
+    valueSchema
 }
