@@ -1,6 +1,6 @@
-import { db } from "../database/mongo.js"
 import { ObjectId } from "mongodb"
 
+import { db } from "../database/mongo.js"
 
 const editarPut = async (req, res) => {
     let { newValue } = res.locals

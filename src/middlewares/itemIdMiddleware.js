@@ -1,5 +1,5 @@
 
-const itemIdMiddleware = async (req, res, next) => {
+const itemIdMiddleware = (req, res, next) => {
     const { itemId } = req.params
     if (!itemId) return res.sendStatus(422);
     

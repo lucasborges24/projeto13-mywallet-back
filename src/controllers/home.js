@@ -1,5 +1,5 @@
-
 import { ObjectId } from "mongodb"
+
 import { db } from "../database/mongo.js"
 
 const homeGet = async (req, res) => {
@@ -21,11 +21,13 @@ const homeGet = async (req, res) => {
 
 const homeDelete = async (req, res) => {
     const { itemId } = res.locals
+
     try {
         await db.collection('values')
             .deleteOne({
                 _id: ObjectId(itemId)
             })
+            
         res.sendStatus(200)
     } catch (error) {
         res.sendStatus(500)

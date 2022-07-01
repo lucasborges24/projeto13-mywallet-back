@@ -1,4 +1,5 @@
 import { Router } from 'express';
+
 import { entradaPost } from '../controllers/entrada.js';
 import { saidaPost } from '../controllers/saida.js';
 import { tokenMiddleware } from '../middlewares/tokenMiddleware.js';

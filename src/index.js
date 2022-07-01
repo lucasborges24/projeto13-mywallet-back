@@ -1,15 +1,12 @@
 import express from "express";
 import cors from 'cors';
-import joi from 'joi';
 import dotenv from 'dotenv';
-import dayjs from "dayjs";
 import chalk from 'chalk';
 
 import addRouter from './routes/addRouter.js'
 import authRouter from './routes/authRouter.js'
 import editRouter from './routes/editRouter.js'
 import homeRouter from './routes/homeRouter.js'
-
 
 dotenv.config();
 const app = express();

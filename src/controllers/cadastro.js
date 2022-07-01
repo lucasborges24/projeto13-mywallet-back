@@ -1,9 +1,10 @@
 import bcrypt from 'bcrypt'
+
 import { db } from "../database/mongo.js"
 
 const cadastroPost = async (req, res) => {
     const { email, password, newUser } = res.locals
-    console.log(email, password)
+    
     const passwordCrypt = bcrypt.hashSync(password, 10);
 
     try {

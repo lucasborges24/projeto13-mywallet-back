@@ -1,4 +1,5 @@
 import { Router } from 'express';
+
 import { cadastroPost } from '../controllers/cadastro.js';
 import { loginPost } from '../controllers/login.js';
 import { cadastroValidationMiddleware } from '../middlewares/CadastroValidationMiddleware.js';
